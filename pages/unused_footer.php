@@ -43,7 +43,7 @@
 	});
 
 	function openSearch() {
-		window.location.href='search_product.php'
+		window.location.href='search_product.html'
 		// document.getElementById("search-overlay").style.display = "block";
 	}
 

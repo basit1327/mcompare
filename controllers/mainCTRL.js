@@ -465,7 +465,7 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
                     if ( serverResponse.hasOwnProperty('status') ){
                         checkForSessionExpireCall(serverResponse.status);
                         if ( serverResponse.status==200 ){
-                            window.location.href='index.php';
+                            window.location.href='index.html';
                             localStorage.setItem("username",serverResponse.name);
                         }
                         else{
@@ -513,7 +513,7 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
                         checkForSessionExpireCall(serverResponse.status);
                         if ( serverResponse.status==200 ){
                             swal(serverResponse.detail);
-                            setTimeout(()=>{window.location.href='login.php'},1000);
+                            setTimeout(()=>{window.location.href='login.html'},1000);
                         }
                         else{
                             swal({

@@ -53,10 +53,10 @@
 						<li class="onhover-dropdown mobile-account"><i class="fa fa-user" aria-hidden="true"></i> My Account
 							<ul ng-if="userName" class="onhover-show-div">
 								<li><a href="#" data-lng="es">{{userName}}</a></li>
-								<li><a href="login.php" data-lng="es">Logout</a></li>
+								<li><a href="login.html" data-lng="es">Logout</a></li>
 							</ul>
 							<ul ng-if="!userName" class="onhover-show-div">
-								<li><a href="login.php" data-lng="es">Login</a></li>
+								<li><a href="login.html" data-lng="es">Login</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -69,7 +69,7 @@
 			<div class="col-sm-12">
 				<div class="main-menu border-section border-top-0">
 					<div class="brand-logo layout2-logo mt-4">
-						<a href="index.php"><img src="../assets/images/logo.png" class="img-fluid blur-up lazyload" alt="" style="height: auto;"></a>
+						<a href="index.html"><img src="../assets/images/logo.png" class="img-fluid blur-up lazyload" alt="" style="height: auto;"></a>
 					</div>
 					<div class="menu-right pull-right">
 						<div class="icon-nav">
@@ -153,7 +153,7 @@
 					</div>
 					<div class="close-circle">
 						<a href="#">
-<!--							<i class="ti-trash" aria-hidden="true"></i>-->
+							<!--							<i class="ti-trash" aria-hidden="true"></i>-->
 						</a>
 					</div>
 				</li>
@@ -161,7 +161,7 @@
 			<ul class="cart_total">
 				<li>
 					<div class="buttons">
-						<a ng-if="sideCartItems.length>0" href="cart.php" class="btn btn-solid btn-xs checkout">view cart</a>
+						<a ng-if="sideCartItems.length>0" href="cart.html" class="btn btn-solid btn-xs checkout">view cart</a>
 					</div>
 				</li>
 			</ul>
@@ -169,3 +169,104 @@
 	</div>
 </div>
 <!-- Add to cart bar end-->
+
+
+<!-- section start -->
+<section ng-init="getMarketDetail()">
+	<div class="mt-4 collection-wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="product-slick">
+						<div><img style="height: 250px; width: 100%" src="{{marketDetail.image}}" alt="" class="img-fluid blur-up lazyload image_zoom_cls-0"></div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Section ends -->
+
+
+<!-- product-tab starts -->
+<section class="tab-product m-0">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 col-lg-12">
+				<ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+					<li class="nav-item"><a class="nav-link active" id="top-home-tab" data-toggle="tab" href="#top-home" role="tab" aria-selected="true">Description</a>
+						<div class="material-border"></div>
+					</li>
+				</ul>
+
+				<div class="tab-content nav-material" id="top-tabContent">
+					<div class="tab-pane fade show active" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
+						<p style="margin-top: 60px">{{marketDetail.description}}</p>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- product-tab ends -->
+
+
+
+
+<!-- latest jquery-->
+<script src="../assets/js/jquery-3.3.1.min.js"></script>
+
+<!-- popper js-->
+<script src="../assets/js/popper.min.js"></script>
+
+<!-- slick js-->
+<script src="../assets/js/slick.js"></script>
+
+<!-- menu js-->
+<script src="../assets/js/menu.js"></script>
+
+<!-- lazyload js-->
+<script src="../assets/js/lazysizes.min.js"></script>
+
+<!-- Bootstrap js-->
+<script src="../assets/js/bootstrap.js"></script>
+
+<!-- Bootstrap Notification js-->
+<script src="../assets/js/bootstrap-notify.min.js"></script>
+
+<!-- Theme js-->
+<script src="../assets/js/script.js"></script>
+
+<!-- Angular JS -->
+<script src="../assets/js/angular1.7.9.min.js"></script>
+<script src="../controllers/mainCTRL.js"></script>
+
+<!--script sweet alert-->
+<script src="../assets/js/sweet-alert.min.js"></script>
+
+<!-- Utils -->
+<script src="../utils/config.js"></script>
+<script src="../utils/request.js"></script>
+<script src="../utils/cookies.js"></script>
+<script src="../utils/date_utils.js"></script>
+
+
+<script>
+	$(window).on('load', function() {
+		$('#exampleModal').modal('show');
+	});
+
+	function openSearch() {
+		window.location.href='search_product.html'
+		// document.getElementById("search-overlay").style.display = "block";
+	}
+
+	function closeSearch() {
+		document.getElementById("search-overlay").style.display = "none";
+	}
+</script>
+</body>
+
+</html>

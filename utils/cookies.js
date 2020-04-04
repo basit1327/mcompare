@@ -29,6 +29,6 @@ function deleteAllCookies() {
 function checkForSessionExpireCall(status){
 	if ( status == 440){
 		deleteAllCookies();
-		window.location.href='../login.php';
+		window.location.href='../login.html';
 	}
 }
