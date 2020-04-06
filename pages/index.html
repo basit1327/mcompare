@@ -53,10 +53,10 @@
 						<li class="onhover-dropdown mobile-account"><i class="fa fa-user" aria-hidden="true"></i> My Account
 							<ul ng-if="userName" class="onhover-show-div">
 								<li><a href="#" data-lng="es">{{userName}}</a></li>
-								<li><a href="login.html" data-lng="es">Logout</a></li>
+								<li><a href="login.html" data-lng="es">{{dictionary.logout}}</a></li>
 							</ul>
 							<ul ng-if="!userName" class="onhover-show-div">
-								<li><a href="login.html" data-lng="es">Login</a></li>
+								<li><a href="login.html" data-lng="es">{{dictionary.login}}</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -100,8 +100,8 @@
 									<div class="show-div setting">
 										<h6>language</h6>
 										<ul>
-											<li><a href="#">english</a></li>
-											<li><a href="#">العربية</a></li>
+											<li ng-click="changeLanguage('english')"><a href="#">english</a></li>
+											<li ng-click="changeLanguage('arabic')"><a href="#">العربية</a></li>
 										</ul>
 									</div>
 								</li>
@@ -115,11 +115,8 @@
 			</div>
 		</div>
 	</div>
-
 </header>
 <!-- header end -->
-
-
 
 
 <!-- Add to cart bar -->
@@ -127,7 +124,7 @@
 	<a href="javascript:void(0)" class="overlay" onclick="closeCart()"></a>
 	<div class="cart-inner" style="overflow-x: hidden">
 		<div class="cart_top">
-			<h3>my cart</h3>
+			<h3>{{dictionary.my_cart}}</h3>
 			<div class="close-cart">
 				<a href="javascript:void(0)" onclick="closeCart()">
 					<i class="fa fa-times" aria-hidden="true"></i>
@@ -161,7 +158,7 @@
 			<ul class="cart_total">
 				<li>
 					<div class="buttons">
-						<a ng-if="sideCartItems.length>0" href="cart.html" class="btn btn-solid btn-xs checkout">view cart</a>
+						<a ng-if="sideCartItems.length>0" href="cart.html" class="btn btn-solid btn-xs checkout">{{dictionary.view_cart}}</a>
 					</div>
 				</li>
 			</ul>
@@ -177,7 +174,7 @@
 <section ng-init="getHomePageItems()" class="section-b-space p-t-0 ratio_asos" style="margin-top: 80px !important;">
     <div class="container">
         <div class="title3">
-            <h2 class="title-inner3">special products</h2>
+            <h2 class="title-inner3">{{dictionary.special_product}}</h2>
             <div class="line"></div>
         </div>
         <div class="row">
@@ -219,9 +216,9 @@
 <section class="section-b-space">
     <div class="container">
         <div class="row multiple-slider">
-            <div class="col-lg-3 col-sm-6">
+            <div class="col-lg-4 col-sm-6">
                 <div class="theme-card">
-                    <h5 class="title-border">new products</h5>
+                    <h5 class="title-border">{{dictionary.new_product}}</h5>
                     <div class="offer-slider slide-1">
                         <div>
                             <div class="media" ng-repeat="x in homepageProducts.new">
@@ -270,9 +267,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
+            <div class="col-lg-4 col-sm-6">
                 <div class="theme-card">
-                    <h5 class="title-border">feature product</h5>
+                    <h5 class="title-border">{{dictionary.feature_product}}</h5>
                     <div class="offer-slider slide-1">
 						<div>
 							<div class="media" ng-repeat="x in homepageProducts.featured">
@@ -321,9 +318,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
+            <div class="col-lg-4 col-sm-6">
                 <div class="theme-card">
-                    <h5 class="title-border">best seller</h5>
+                    <h5 class="title-border">{{dictionary.best_seller}}</h5>
                     <div class="offer-slider slide-1">
 						<div>
 							<div class="media" ng-repeat="x in homepageProducts.best">

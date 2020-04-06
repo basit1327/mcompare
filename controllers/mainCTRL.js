@@ -4,6 +4,9 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
     sc.sideCartItems = [];
     sc.mainCartItems = [];
     sc.userName  = null;
+    sc.language = 'english';
+    sc.dictionary = null;
+
 
     //IN development function
     (()=>{
@@ -82,14 +85,14 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
                 }
                 else throw 'Invalid server response';
             }
-            else throw 'No response by server';
+            else throw sc.dictionary.no_response;
 
         }
         catch (e) {
             console.log(e);
             swal({
-                title: "Oops",
-                text: "Something not right",
+                title: sc.dictionary.oops,
+                text: sc.dictionary.something_not_right,
                 icon: "error",
                 button: "Close",
             });
@@ -102,8 +105,8 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
         let notify = (text,type)=>{
             $.notify({
                     icon: 'fa fa-check',
-                    title: 'Success!',
-                    message: text||'Item Successfully added to your cart'
+                    title: sc.dictionary.success,
+                    message: text||sc.dictionary.added_to_cart
                 },
                 {
                     element: 'body',
@@ -154,7 +157,7 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
                             }
                             else{
                                 swal({
-                                    title: "Oops",
+                                    title: sc.dictionary.oops,
                                     text: serverResponse.detail,
                                     icon: "error",
                                     button: "Close",
@@ -163,14 +166,14 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
                         }
                         else throw 'Invalid server response';
                     }
-                    else throw 'No response by server';
+                    else throw sc.dictionary.no_response;
 
                 }
                 catch (e) {
                     console.log(e);
                     swal({
-                        title: "Oops",
-                        text: "Something not right",
+                        title: sc.dictionary.oops,
+                        text: sc.dictionary.something_not_right,
                         icon: "error",
                         button: "Close",
                     });
@@ -198,8 +201,8 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
             catch ( e ) {
                 console.log(e);
                 swal({
-                    title: "Oops",
-                    text: "Something not right",
+                    title: sc.dictionary.oops,
+                    text: sc.dictionary.something_not_right,
                     icon: "error",
                     button: "Close",
                 });
@@ -214,7 +217,7 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
                 if ( !alreadyAdded ){
                     addItem();
                 }
-                else { notify('Already Added','primary'); }
+                else { notify(sc.dictionary.already_added,'primary'); }
             }
             else {
                 sideCartLocalStorageData = [];
@@ -224,8 +227,8 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
         catch ( e ) {
             console.log(e);
             swal({
-                title: "Oops",
-                text: "Something not right",
+                title: sc.dictionary.oops,
+                text: sc.dictionary.something_not_right,
                 icon: "error",
                 button: "Close",
             });
@@ -263,14 +266,14 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
                     }
                     else throw 'Invalid server response';
                 }
-                else throw 'No response by server';
+                else throw sc.dictionary.no_response;
 
             }
             catch (e) {
                 console.log(e);
                 swal({
-                    title: "Oops",
-                    text: "Something not right",
+                    title: sc.dictionary.oops,
+                    text: sc.dictionary.something_not_right,
                     icon: "error",
                     button: "Close",
                 });
@@ -295,14 +298,14 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
                 }
                 else throw 'Invalid server response';
             }
-            else throw 'No response by server';
+            else throw sc.dictionary.no_response;
 
         }
         catch (e) {
             console.log(e);
             swal({
-                title: "Oops",
-                text: "Something not right",
+                title: sc.dictionary.oops,
+                text: sc.dictionary.something_not_right,
                 icon: "error",
                 button: "Close",
             });
@@ -380,8 +383,8 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
         catch ( e ) {
             console.log(e);
             swal({
-                title: "Oops",
-                text: "Something not right",
+                title: sc.dictionary.oops,
+                text: sc.dictionary.something_not_right,
                 icon: "error",
                 button: "Close",
             });
@@ -397,11 +400,11 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
             sc.$digest();
         };
 
-        swal("This operation will remove all items from your cart", {
+        swal(sc.dictionary.remove_cart_items, {
             buttons: {
-                cancel: "Dismiss",
+                cancel: sc.dictionary.dismiss,
                 doIt: {
-                    text: "Do it",
+                    text: sc.dictionary.do_it,
                     value: "doIt",
                 }
             },
@@ -416,6 +419,62 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
     //endregion
 
     //region Global Functions
+
+    //region dictionary
+    var english_words = {
+        special_product:'special product',
+        new_product:'new product',
+        feature_product:'feature product',
+        best_seller:'best seller',
+        search_products:'Search products',
+        search:'search',
+        description:'description',
+        my_cart:'my cart',
+        view_cart:'view cart',
+        clear_cart:'clear cart',
+        already_added:'Already added',
+        added_to_cart:'Item Successfully added to your cart',
+        cart_detail:'Products has been added to cart from different markets so you can find a better deal compare the prices of markets',
+        remove_cart_items:'This operation will remove all items from your cart',
+        login:'Login',
+        logout:'Logout',
+        something_not_right:'Something not right',
+        no_response:'No response by server',
+        oops:'Oops',
+        do_it:'Do it',
+        dismiss:'Dismiss',
+        success:'Success!',
+    };
+    var arabic_words = {
+        special_product:'المنتجات الخاصة',
+        new_product:'منتجات جديدة',
+        feature_product:'منتجات مميزة',
+        best_seller:'الأكثر مبيعا',
+        search_products:'البحث عن المنتجات',
+        search:'بحث',
+        description:'وصف',
+        my_cart:'عربة التسوق',
+        view_cart:'عرض السلة',
+        clear_cart:'عربة واضحة',
+        already_added:'تم الاضافة مسبقا',
+        added_to_cart:'تمت إضافة العنصر بنجاح إلى سلة التسوق الخاصة بك',
+        cart_detail:'تمت إضافة المنتجات إلى سلة التسوق من أسواق مختلفة حتى تتمكن من العثور على صفقة أفضل مقارنة بين أسعار الأسواق',
+        remove_cart_items:'ستؤدي هذه العملية إلى إزالة جميع العناصر من سلة التسوق الخاصة بك',
+        login:'تسجيل الدخول',
+        logout:'تسجيل خروج',
+        something_not_right:'شيء ما ليس صحيحا',
+        no_response:'لا يوجد رد من الخادم',
+        oops:'وجه الفتاة',
+        do_it:'افعلها',
+        dismiss:'تجاهل',
+        success:'نجاح!',
+    };
+
+
+    sc.dictionary = english_words;
+    //endregion
+
+
     sc.initSideCart = ()=>{
        try{
             let data = localStorage.getItem("sideCartItems");
@@ -430,20 +489,50 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
         catch ( e ) {
             console.log(e);
             swal({
-                title: "Oops",
-                text: "Something not right",
+                title: sc.dictionary.oops,
+                text: sc.dictionary.something_not_right,
                 icon: "error",
                 button: "Close",
             });
         }
     };
 
-    (checkUsername = ()=>{
+    sc.changeLanguage = (language)=>{
         try{
-            sc.userName = localStorage.getItem("username");
+            if ( language=='english' || language=='arabic'){
+                localStorage.setItem("language",language);
+                sc.language = language;
+                swal("You've change language to "+language);
+                if ( language=='english' ){
+                    sc.dictionary = english_words;
+                } else if ( language=='arabic' ){
+                    sc.dictionary = arabic_words;
+                }
+            }
         }
         catch ( e ) {
-            swal('something not right');
+            console.log(e);
+            swal({
+                title: sc.dictionary.oops,
+                text: sc.dictionary.something_not_right,
+                icon: "error",
+                button: "Close",
+            });
+        }
+    };
+
+    (checkUsernameAndLanguage = ()=>{
+        try{
+            sc.userName = localStorage.getItem("username");
+            sc.language = localStorage.getItem("language") || 'english';
+            if ( sc.language=='arabic' ){
+                sc.dictionary = arabic_words;
+            } else {
+                sc.dictionary = english_words;
+            }
+        }
+        catch ( e ) {
+            swal(sc.dictionary.something_not_right);
         }
     })();
     //endregion
@@ -470,7 +559,7 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
                         }
                         else{
                             swal({
-                                title: "Oops",
+                                title: sc.dictionary.oops,
                                 text: serverResponse.detail,
                                 icon: "error",
                                 button: "Close",
@@ -479,13 +568,13 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
                     }
                     else throw 'Invalid server response';
                 }
-                else throw 'No response by server';
+                else throw sc.dictionary.no_response;
             }
             catch (e) {
                 console.log(e);
                 swal({
-                    title: "Oops",
-                    text: "Something not right",
+                    title: sc.dictionary.oops,
+                    text: sc.dictionary.something_not_right,
                     icon: "error",
                     button: "Close",
                 });
@@ -517,7 +606,7 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
                         }
                         else{
                             swal({
-                                title: "Oops",
+                                title: sc.dictionary.oops,
                                 text: serverResponse.detail,
                                 icon: "error",
                                 button: "Close",
@@ -526,13 +615,13 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
                     }
                     else throw 'Invalid server response';
                 }
-                else throw 'No response by server';
+                else throw sc.dictionary.no_response;
             }
             catch (e) {
                 console.log(e);
                 swal({
-                    title: "Oops",
-                    text: "Something not right",
+                    title: sc.dictionary.oops,
+                    text: sc.dictionary.something_not_right,
                     icon: "error",
                     button: "Close",
                 });
@@ -542,6 +631,8 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
          },2000)
     };
     //endregion
+
+
 
 }]);
 

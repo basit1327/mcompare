@@ -25,3 +25,8 @@
 	top: 50%;
 	font-size: 5em;
 }
+
+.onhover-dropdown ul li {
+	padding: 2px;
+	margin-bottom: 5px;
+}
