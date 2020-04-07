@@ -44,26 +44,6 @@
 <!-- header start -->
 <header class="header-2">
 	<div class="mobile-fix-option"></div>
-	<div class="top-header top-header-dark">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 text-right">
-					<ul class="header-dropdown">
-						<li class="mobile-wishlist"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i> wishlist</a></li>
-						<li class="onhover-dropdown mobile-account"><i class="fa fa-user" aria-hidden="true"></i> My Account
-							<ul ng-if="userName" class="onhover-show-div">
-								<li><a href="#" data-lng="es">{{userName}}</a></li>
-								<li><a href="login.html" data-lng="es">{{dictionary.logout}}</a></li>
-							</ul>
-							<ul ng-if="!userName" class="onhover-show-div">
-								<li><a href="login.html" data-lng="es">{{dictionary.login}}</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
@@ -74,34 +54,24 @@
 					<div class="menu-right pull-right">
 						<div class="icon-nav">
 							<ul>
-								<li class="onhover-div mobile-search">
+								<li class="onhover-div mobile-search" style="left: 30%">
 									<div><img src="../assets/images/icon/search.png" onclick="openSearch()" class="img-fluid blur-up lazyload" alt=""> <i class="ti-search" onclick="openSearch()"></i></div>
-									<div id="search-overlay" class="search-overlay">
-										<div><span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
-											<div class="overlay-content">
-												<div class="container">
-													<div class="row">
-														<div class="col-xl-12">
-															<form>
-																<div class="form-group">
-																	<input type="text" class="form-control" id="exampleInputPassword1" placeholder="Search a Product">
-																</div>
-																<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-															</form>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
 								</li>
-								<li class="onhover-div mobile-setting">
+								<li class="onhover-div mobile-setting" style="right: 30%;">
 									<div><img src="../assets/images/icon/setting.png" class="img-fluid blur-up lazyload" alt=""> <i class="ti-settings"></i></div>
 									<div class="show-div setting">
-										<h6>language</h6>
+										<h6>Language</h6>
 										<ul>
 											<li ng-click="changeLanguage('english')"><a href="#">english</a></li>
 											<li ng-click="changeLanguage('arabic')"><a href="#">العربية</a></li>
+										</ul>
+										<h6>Account</h6>
+										<ul ng-if="userName" class="onhover-show-div">
+											<li><a href="#" data-lng="es">{{userName}}</a></li>
+											<li><a href="login.html" data-lng="es">{{dictionary.logout}}</a></li>
+										</ul>
+										<ul ng-if="!userName" class="onhover-show-div">
+											<li><a href="login.html" data-lng="es">{{dictionary.login}}</a></li>
 										</ul>
 									</div>
 								</li>

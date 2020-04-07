@@ -180,20 +180,20 @@
 				<div class="theme-card">
 					<form class="theme-form">
 						<div class="form-group">
-							<label for="email">Email</label>
+							<label for="email">{{dictionary.email}}</label>
 							<input ng-model="loginEmail" type="text" class="form-control" id="email" placeholder="Email" required="">
 						</div>
 						<div class="form-group">
-							<label for="review">Password</label>
+							<label for="review">{{dictionary.password}}</label>
 							<input ng-model="loginPassword" type="password" class="form-control" id="review" placeholder="Enter your password" required="">
-						</div><button ng-click="login()" class="btn btn-solid">Login</button></form>
+						</div><button ng-click="login()" class="btn btn-solid">{{dictionary.login}}</button></form>
 				</div>
 			</div>
 			<div class="col-lg-6 right-login">
-				<h3>New User</h3>
+				<h3>{{dictionary.new_user}}</h3>
 				<div class="theme-card authentication-right">
-					<h6 class="title-font">Create A Account</h6>
-					<p>Sign up for a free account at our store. Registration is quick and easy. It allows you to be able to order from our shop. To start shopping click register.</p><a href="register.html" class="btn btn-solid">Create an Account</a></div>
+					<h6 class="title-font">{{dictionary.create_an_account}}</h6>
+					<p>{{dictionary.createAccountMessage}}</p><a href="register.html" class="btn btn-solid">{{dictionary.create_an_account}}</a></div>
 			</div>
 		</div>
 	</div>

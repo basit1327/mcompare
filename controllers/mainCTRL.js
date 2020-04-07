@@ -444,6 +444,14 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
         do_it:'Do it',
         dismiss:'Dismiss',
         success:'Success!',
+        email:'Email',
+        password:'Password',
+        new_user:'New User',
+        create_an_account:'Create An Account',
+        createAccountMessage:'Sign up for a free account at our store. Registration is quick and easy. It allows you to be able to order from our shop. To start shopping click register.',
+        first_name:'First Name',
+        last_name:'Last Name',
+        already_have_an_account:'Already have an account',
     };
     var arabic_words = {
         special_product:'المنتجات الخاصة',
@@ -468,6 +476,14 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
         do_it:'افعلها',
         dismiss:'تجاهل',
         success:'نجاح!',
+        email:'البريد الإلكتروني',
+        password:'كلمه السر',
+        new_user:'مستخدم جديد',
+        create_an_account:'انشئ حساب',
+        createAccountMessage:'قم بالتسجيل للحصول على حساب مجاني في متجرنا. تسجيل سريع وسهل. يسمح لك أن تكون قادراً على الطلب من متجرنا. لبدء التسوق ، انقر فوق تسجيل.',
+        first_name:'الاسم الاول',
+        last_name:'الكنية',
+        already_have_an_account:'هل لديك حساب',
     };
 
 
@@ -502,7 +518,6 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
             if ( language=='english' || language=='arabic'){
                 localStorage.setItem("language",language);
                 sc.language = language;
-                swal("You've change language to "+language);
                 if ( language=='english' ){
                     sc.dictionary = english_words;
                 } else if ( language=='arabic' ){
