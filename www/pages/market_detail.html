@@ -10,7 +10,7 @@
 	<meta name="author" content="multikart">
 	<link rel="icon" href="../assets/images/favicon/2.png" type="image/x-icon">
 	<link rel="shortcut icon" href="../assets/images/favicon/2.png" type="image/x-icon">
-	<title>M-Compare - Compare market prices at single stop</title>
+	<title>Cdeal- Compare market prices at single stop</title>
 
 	<!--Google font-->
 	<!--<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">-->
@@ -47,16 +47,25 @@
 	<div class="top-header top-header-dark">
 		<div class="container">
 			<div class="row">
+				<div class="col-lg-6">
+					<div class="header-contact">
+					</div>
+				</div>
 				<div class="col-lg-6 text-right">
 					<ul class="header-dropdown">
-						<li class="mobile-wishlist"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i> wishlist</a></li>
+						<li class="mobile-wishlist">
+							<div>
+								<img src="../assets/images/icon/search.png" onclick="openSearch()" class="img-fluid blur-up lazyload" alt="">
+								<!--<i class="ti-search" onclick="openSearch()"></i>-->
+							</div>
+						</li>
 						<li class="onhover-dropdown mobile-account"><i class="fa fa-user" aria-hidden="true"></i> My Account
 							<ul ng-if="userName" class="onhover-show-div">
 								<li><a href="#" data-lng="es">{{userName}}</a></li>
-								<li><a href="login.html" data-lng="es">Logout</a></li>
+								<li><a href="login.html" data-lng="es">{{dictionary.logout}}</a></li>
 							</ul>
 							<ul ng-if="!userName" class="onhover-show-div">
-								<li><a href="login.html" data-lng="es">Login</a></li>
+								<li><a href="login.html" data-lng="es">{{dictionary.login}}</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -74,34 +83,16 @@
 					<div class="menu-right pull-right">
 						<div class="icon-nav">
 							<ul>
-								<li class="onhover-div mobile-search">
-									<div><img src="../assets/images/icon/search.png" onclick="openSearch()" class="img-fluid blur-up lazyload" alt=""> <i class="ti-search" onclick="openSearch()"></i></div>
-									<div id="search-overlay" class="search-overlay">
-										<div><span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
-											<div class="overlay-content">
-												<div class="container">
-													<div class="row">
-														<div class="col-xl-12">
-															<form>
-																<div class="form-group">
-																	<input type="text" class="form-control" id="exampleInputPassword1" placeholder="Search a Product">
-																</div>
-																<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-															</form>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
+								<li class="mobile-search">
+									<a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> </a>
 								</li>
 								<li class="onhover-div mobile-setting">
 									<div><img src="../assets/images/icon/setting.png" class="img-fluid blur-up lazyload" alt=""> <i class="ti-settings"></i></div>
 									<div class="show-div setting">
-										<h6>language</h6>
+										<h6>Language</h6>
 										<ul>
-											<li><a href="#">english</a></li>
-											<li><a href="#">العربية</a></li>
+											<li ng-click="changeLanguage('english')"><a href="#">english</a></li>
+											<li ng-click="changeLanguage('arabic')"><a href="#">العربية</a></li>
 										</ul>
 									</div>
 								</li>
@@ -115,11 +106,8 @@
 			</div>
 		</div>
 	</div>
-
 </header>
 <!-- header end -->
-
-
 
 
 <!-- Add to cart bar -->
@@ -127,7 +115,7 @@
 	<a href="javascript:void(0)" class="overlay" onclick="closeCart()"></a>
 	<div class="cart-inner" style="overflow-x: hidden">
 		<div class="cart_top">
-			<h3>my cart</h3>
+			<h3>{{dictionary.my_cart}}</h3>
 			<div class="close-cart">
 				<a href="javascript:void(0)" onclick="closeCart()">
 					<i class="fa fa-times" aria-hidden="true"></i>
@@ -161,7 +149,7 @@
 			<ul class="cart_total">
 				<li>
 					<div class="buttons">
-						<a ng-if="sideCartItems.length>0" href="cart.html" class="btn btn-solid btn-xs checkout">view cart</a>
+						<a ng-if="sideCartItems.length>0" href="cart.html" class="btn btn-solid btn-xs checkout">{{dictionary.view_cart}}</a>
 					</div>
 				</li>
 			</ul>
@@ -171,41 +159,47 @@
 <!-- Add to cart bar end-->
 
 
-
-<!--section start-->
-<section class="login-page section-b-space mt-4">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-6">
-				<div class="theme-card">
-					<form class="theme-form">
-						<div class="form-group">
-							<label for="email">{{dictionary.email}}</label>
-							<input ng-model="loginEmail" type="text" class="form-control" id="email" placeholder="Email" required="">
-						</div>
-						<div class="form-group">
-							<label for="review">{{dictionary.password}}</label>
-							<input ng-model="loginPassword" type="password" class="form-control" id="review" placeholder="Enter your password" required="">
-						</div><button ng-click="login()" class="btn btn-solid">{{dictionary.login}}</button></form>
+<!-- section start -->
+<section ng-init="getMarketDetail()">
+	<div class="mt-4 collection-wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="product-slick">
+						<div><img style="height: 250px; width: 100%" src="{{marketDetail.image}}" alt="" class="img-fluid blur-up lazyload image_zoom_cls-0"></div>
+					</div>
 				</div>
-			</div>
-			<div class="col-lg-6 right-login">
-				<h3>{{dictionary.new_user}}</h3>
-				<div class="theme-card authentication-right">
-					<h6 class="title-font">{{dictionary.create_an_account}}</h6>
-					<p>{{dictionary.createAccountMessage}}</p><a href="register.html" class="btn btn-solid">{{dictionary.create_an_account}}</a></div>
+
 			</div>
 		</div>
 	</div>
 </section>
-<!--Section ends-->
+<!-- Section ends -->
 
 
-<!-- Waiting Div -->
-<div id="waiting" class="loading-container text-center" >
-	<i class="fa fa-spinner fa-spin"></i>
-</div>
-<!-- Waiting Div end -->
+<!-- product-tab starts -->
+<section class="tab-product m-0">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 col-lg-12">
+				<ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+					<li class="nav-item"><a class="nav-link active" id="top-home-tab" data-toggle="tab" href="#top-home" role="tab" aria-selected="true">{{dictionary.description}}</a>
+						<div class="material-border"></div>
+					</li>
+				</ul>
+
+				<div class="tab-content nav-material" id="top-tabContent">
+					<div class="tab-pane fade show active" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
+						<p style="margin-top: 60px">{{marketDetail.description}}</p>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- product-tab ends -->
+
 
 
 
@@ -264,14 +258,3 @@
 </body>
 
 </html>
-
-
-
-<script>
-	$('.top-header').hide();
-	$('.menu-right').hide();
-	$('.mobile-fix-option').hide();
-
-	localStorage.setItem("username","");
-	localStorage.setItem("ip","");
-</script>

@@ -332,7 +332,7 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
                 //finding least
                 let leastIndex = 0;
                 sc.mainCartItems.forEach((e,i)=>{
-                    if ( e.total< sc.mainCartItems[leastIndex]){
+                    if ( e.total< sc.mainCartItems[leastIndex].total){
                         leastIndex = i;
                     }
                 });
@@ -415,6 +415,46 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
                     break;
             }
         });
+    };
+
+    sc.removeSingleProductFromCart = (name) =>{
+        try{
+            //removing from side cart
+            let data = localStorage.getItem("sideCartItems");
+            data = JSON.parse(data);
+            item = data.filter(e=>e.name==name);
+            data.forEach((e,i)=>{
+                if ( e.name == name ){
+                    data.splice(i,1);
+                    localStorage.setItem("sideCartItems",JSON.stringify(data));
+                }
+            });
+            //removing from side cart end
+
+
+            //removing from main cart
+            let mainCartData = localStorage.getItem("mainCartItems");
+            mainCartData = JSON.parse(mainCartData);
+            mainCartData.forEach(e=>{
+                e.product.forEach((f,i)=>{
+                    if ( f.name == name ){
+                        e.product.splice(i,1);
+                    }
+                });
+            });
+            localStorage.setItem("mainCartItems",JSON.stringify(mainCartData));
+            window.location.reload();
+            //removing from main cart end
+        }
+        catch ( e ) {
+            console.log(e);
+            swal({
+                title: sc.dictionary.oops,
+                text: sc.dictionary.something_not_right,
+                icon: "error",
+                button: "Close",
+            });
+        }
     };
     //endregion
 
@@ -553,10 +593,16 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
     //endregion
 
     //region LoginPage Functions
+    sc.passwordNotCorrect = false;
     sc.login = () =>{
         if ( !sc.loginEmail || !sc.loginPassword ){
             return;
         }
+        if ( !checkPassword(sc.loginPassword ) ){
+            sc.passwordNotCorrect = true;
+            return;
+        }
+        sc.passwordNotCorrect = false;
         $('#waiting').show();
         setTimeout(async ()=>{
             try{
@@ -602,7 +648,11 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
         if ( !sc.registerFirstName || !sc.registerFirstName || !sc.registerEmail || !sc.registerPassword ){
             return;
         }
-
+        if ( !checkPassword(sc.registerPassword ) ){
+            sc.passwordNotCorrect = true;
+            return;
+        }
+        sc.passwordNotCorrect = false;
         $('#waiting').show();
         setTimeout(async ()=>{
             try{
@@ -645,6 +695,24 @@ mcompare_app.controller("mainCTRL", ['$http', '$scope', function(http, sc){
             $('#waiting').hide();
          },2000)
     };
+
+    function checkPassword ( password ) {
+        let checkStringForNumbers = () =>{
+            let foundNumber = false;
+            for( let i = 0; i < password.length; i++){
+                if(!isNaN(password.charAt(i))){           //if the string is a number, do the following
+                    foundNumber = true;
+                }
+            }
+            return foundNumber;
+        };
+
+        if ( password.length<8 ){
+            return false;
+        } else {
+            return checkStringForNumbers();
+        }
+    }
     //endregion
 
 
